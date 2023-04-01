@@ -751,11 +751,6 @@ body {
     transform: translateY(-50%);
 }
 
-.person {
-    top: 50%;
-    transform: translateY(-50%);
-}
-
 .modal-field {
     margin-bottom: 8px;
 }
