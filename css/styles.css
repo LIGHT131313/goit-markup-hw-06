@@ -184,27 +184,44 @@ body {
 
 /*----------Buttons----------*/
 .hero-btn,
-.filter-btn,
+.subs-btn,
 .send-btn,
-.subs-btn {
+.filter-btn {
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 1.5;    
     letter-spacing: 0.04em;
     cursor: pointer;
+    border: 1px solid transparent;
     border-radius: 4px;
     color: var(--color-white);
     background-color: var(--color-iris);
     padding: 16px 32px;
+    transition: background-color var(--tr-duration) var(--tr-timing-function);
 }
 
 .hero-btn {
     min-width: 169px;
     min-height: 69px;    
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-    border: 1px solid transparent;
-    transition: background-color var(--tr-duration) var(--tr-timing-function);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);    
+}
+
+.subs-btn {
+    padding: 8px 24px;
+    min-height: 40px;
+    min-width: 165px;
+    display: flex;
+    justify-content: center;
+    align-self: center;    
+}
+
+.send-btn {
+    min-height: 56px;
+    min-width: 169px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);    
 }
 
 .hero-btn:hover,
@@ -219,7 +236,7 @@ body {
 .filter-btn {
     color: var(--color-iris);
     background-color: var(--color-cloud);
-    border: 1px solid var(--color-cornflower);
+    border-color: var(--color-cornflower);
     padding: 12px 24px;
     transition-property: color, background-color, box-shadow, border-color;
     transition-duration: var(--tr-duration);
@@ -255,14 +272,13 @@ body {
     background-color: var(--color-ocean);
 }
 
-.send-btn {
-    min-height: 56px;
-    min-width: 169px;
-    display: block;
-    margin: 0 auto;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-    border: 1px solid transparent;
-    transition: background-color var(--tr-duration) var(--tr-timing-function);
+.close-btn .close-btn-icon {
+    transition: fill var(--tr-duration) var(--tr-timing-function)
+}
+
+.close-btn:hover .close-btn-icon,
+.close-btn:focus .close-btn-icon {
+    fill: var(--color-white);
 }
 
 /*----------Hero----------*/
@@ -581,7 +597,6 @@ body {
 }
 .footer-container {
     display: flex;
-    justify-content: space-between;
 }
 
 .footer-wrap {
@@ -644,7 +659,7 @@ body {
 }
 
 .footer-subs {
-    margin-left: 80px;
+    margin-left: auto;
 }
 
 .footer-form {
@@ -654,7 +669,7 @@ body {
 }
 
 .footer-input {
-    width: 100%;
+    width: 264px;
     height: 40px;
     border: 1px solid var(--color-white);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
@@ -678,17 +693,6 @@ body {
     border: 1px solid var(--color-iris);
 }
 
-.subs-btn {
-    padding: 8px 24px;
-    min-height: 40px;
-    min-width: 165px;
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    border: 1px solid transparent;
-    transition: background-color var(--tr-duration) var(--tr-timing-function);
-}
-
 .footer-icon {
     margin-left: 16px;
     fill: var(--color-white);
@@ -708,11 +712,10 @@ body {
 }
 .modal {
     width: 408px;
-    min-height: 576px;
     background-color: var(--color-dairy);
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
-    padding: 72px 24px 24px 24px;
+    padding: 72px 24px 24px;
     position: relative;
     top: 50%;
     left: 50%;
@@ -755,17 +758,17 @@ body {
     margin-bottom: 8px;
 }
 
-.modal-label,
-.modal-label-text {
+.modal-label {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.modal-label-text,
+.modal-check-label {
     font-size: 12px;
     line-height: 1.17;
     letter-spacing: 0.04em;
-    color: var(--color-light-slate);
-}
-
-.modal-label-text {
-    display: inline-block;
-    margin-bottom: 4px;
+    color: var(--color-light-slate);    
 }
 
 .modal-input,
@@ -786,8 +789,8 @@ body {
     border: 1px solid var(--color-iris);
 }
 
-.modal-input:hover+.modal-input-icon,
-.modal-input:focus+.modal-input-icon {
+.modal-input:hover + .modal-input-icon,
+.modal-input:focus + .modal-input-icon {
     transition: fill var(--tr-duration) var(--tr-timing-function);
 }
 .modal-input:hover + .modal-input-icon,
@@ -814,13 +817,12 @@ body {
     margin-bottom: 24px;
 }
 
-.check-text {
+.modal-check-label {
     display: flex;
     align-items: center;
-    gap: 8px;
 }
 
-.check-text span {
+.modal-check-label span {
     width: 16px;
     height: 16px;
     border-radius: 2px;
@@ -828,28 +830,31 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 8px;
     fill: transparent;
     transition-property: background-color, border-color, fill;
     transition-duration:  var(--tr-duration);
     transition-timing-function: var(--tr-timing-function);
 }
 
-.modal-input-check:checked + .check-text span {
+.modal-input-check:checked + .modal-check-label span {
     background-color: var(--color-ocean);
     border-color: var(--color-ocean);
     fill: var(--color-white);
 }
 
-.modal-input-check:hover + .check-text span,
-.modal-input-check:focus + .check-text span {
+.modal-input-check:hover + .modal-check-label span,
+.modal-input-check:focus + .modal-check-label span {
     border-color: var(--color-ocean);   
 }
 
 .modal-check-link {
+    margin-left: 3px;
     transition: color var(--tr-duration) var(--tr-timing-function);
+    color: var(--color-iris)
 }
 
 .modal-check-link:hover,
 .modal-check-link:focus {
-    color: var(--color-iris);
+    color: var(--color-ocean);
 }
